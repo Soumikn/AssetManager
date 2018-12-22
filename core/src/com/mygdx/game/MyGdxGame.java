@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -66,40 +67,47 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
-			Pets dogs  = new Pets();
-			dogs.setName("asd");
-			dogs.setAge(5);
-			dogs.setColour("red");
-			dogs.setFriendly(true);
-
-
-		Pets fishs  = new Pets();
-			fishs.setName("qwe");
-			fishs.setAge(4);
-			fishs.setColour("balack");
-			fishs.setFriendly(true);
-
-
-		Pets cats  = new Pets();
-			cats.setName("bnm");
-			cats.setAge(51);
-			cats.setColour("gray");
-			cats.setFriendly(false);
-
-		petsArrayList.add(dogs);
-		petsArrayList.add(cats);
-		petsArrayList.add(fishs);
+			Pets dogs  = new Pets("tommy",12,"balck",true);
 
 
 
+		Pets fishs  = new Pets("fishy",22,"white",false);
+//			fishs.setName("qwe");
+//			fishs.setAge(4);
+//			fishs.setColour("balack");
+//			fishs.setFriendly(true);
 
-		Pets dog=new Pets(dogs.name,dogs.age,dogs.colour,dogs.friendly);
-		Pets cat=new Pets(fishs.name,fishs.age,fishs.colour,fishs.friendly);
-		Pets fish=new Pets(cats.name,cats.age,cats.colour,cats.friendly);
+
+		Pets cats  = new Pets("bob",5,"white",true);
+//			cats.setName("bnm");
+//			cats.setAge(51);
+//			cats.setColour("gray");
+//			cats.setFriendly(false);
+
+//		petsArrayList.add(dogs);
+//		petsArrayList.add(cats);
+//		petsArrayList.add(fishs);
+
+
+
+//
+//		Pets dog=new Pets(dogs.name,dogs.age,dogs.colour,dogs.friendly);
+//		Pets cat=new Pets(fishs.name,fishs.age,fishs.colour,fishs.friendly);
+//		Pets fish=new Pets(cats.name,cats.age,cats.colour,cats.friendly);
 
 
 		Json json=new Json();
-		Pets f=json.fromJson(Pets.class,Gdx.files.internal("pets.json"));
+		String dog=json.toJson(dogs);
+		String fish=json.toJson(fishs);
+		String cat=json.toJson(cats);
+
+		FileHandle file =Gdx.files.internal("pets.json");
+		file.writeString(dog,true);
+		file.writeString(cat,true);
+		file.writeString(fish,true);
+
+//		Pets a =json.fromJson(Pets.class,Gdx.files.internal("pets.json"));
+
 
 
 //

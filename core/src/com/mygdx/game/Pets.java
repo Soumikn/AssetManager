@@ -8,7 +8,7 @@ public class Pets {
    public String colour;
    public boolean friendly;
 
-   public Pets(int age, String name, String colour, boolean friendly) {
+   public Pets(String age, int name, String colour, boolean friendly) {
       this.age = age;
       this.name = name;
       this.colour = colour;

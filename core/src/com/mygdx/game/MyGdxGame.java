@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Json;
 
 import java.util.ArrayList;
 
@@ -19,9 +20,10 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Stage stage;
 	public static AssetManager manager;
 	private com.badlogic.gdx.scenes.scene2d.ui.Image image;
-	private ArrayList<Pets> dogsArrayList;
-	private ArrayList<Pets> fishsArrayList;
-	private ArrayList<Pets> catsArrayList;
+
+
+	private ArrayList<Pets> petsArrayList;
+
 
 
 
@@ -32,11 +34,11 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 		stage = new Stage();
 
-		dogsArrayList  = new ArrayList<Pets>();
+		petsArrayList  = new ArrayList<Pets>();
 
-		fishsArrayList  = new ArrayList<Pets>();
 
-		catsArrayList  = new ArrayList<Pets>();
+
+
 
 		Gdx.input.setInputProcessor(stage);
 		manager = new AssetManager();
@@ -61,9 +63,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		stage.addActor(image);
 
-		 Pets dog;
-		 Pets fish;
-		 Pets cat;
+
 
 
 			Pets dogs  = new Pets();
@@ -71,34 +71,41 @@ public class MyGdxGame extends ApplicationAdapter {
 			dogs.setAge(5);
 			dogs.setColour("red");
 			dogs.setFriendly(true);
-		dogsArrayList.add(dogs);
+
 
 		Pets fishs  = new Pets();
 			fishs.setName("qwe");
 			fishs.setAge(4);
 			fishs.setColour("balack");
-		fishsArrayList.add(fishs);
+			fishs.setFriendly(true);
+
 
 		Pets cats  = new Pets();
 			cats.setName("bnm");
 			cats.setAge(51);
 			cats.setColour("gray");
-		catsArrayList.add(cats);
+			cats.setFriendly(false);
+
+		petsArrayList.add(dogs);
+		petsArrayList.add(cats);
+		petsArrayList.add(fishs);
 
 
 
 
+		Pets dog=new Pets(dogs.name,dogs.age,dogs.colour,dogs.friendly);
+		Pets cat=new Pets(fishs.name,fishs.age,fishs.colour,fishs.friendly);
+		Pets fish=new Pets(cats.name,cats.age,cats.colour,cats.friendly);
 
 
-
-//		 dog=new Pets(15,"ABC","RED",true);
-//		 fish=new Pets(10,"XYZ","BLUE",true);
-//		 cat=new Pets(25,"RST","GREEN",true);
+		Json json=new Json();
+		Pets f=json.fromJson(Pets.class,Gdx.files.internal("pets.json"));
 
 
-		System.out.println("DOG : " +dogsArrayList.get(0).getName()+","+dogsArrayList.get(0).getAge()+","+dogsArrayList.get(0).getColour());
-		System.out.println("FISh : " +fishsArrayList.get(0).getName()+","+fishsArrayList.get(0).getAge()+","+fishsArrayList.get(0).getColour());
-		System.out.println("Cat: " +catsArrayList.get(0).getName()+","+catsArrayList.get(0).getAge()+","+catsArrayList.get(0).getColour());
+//
+//		System.out.println("DOG : " +dogsArrayList.get(0).getName()+","+dogsArrayList.get(0).getAge()+","+dogsArrayList.get(0).getColour());
+//		System.out.println("FISh : " +fishsArrayList.get(0).getName()+","+fishsArrayList.get(0).getAge()+","+fishsArrayList.get(0).getColour());
+//		System.out.println("Cat: " +catsArrayList.get(0).getName()+","+catsArrayList.get(0).getAge()+","+catsArrayList.get(0).getColour());
 
 
 

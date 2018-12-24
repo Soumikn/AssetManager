@@ -10,13 +10,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 
 import java.util.ArrayList;
 
-import sun.rmi.runtime.Log;
-
 
 public class MyGdxGame extends ApplicationAdapter {
+
+	public Pets array;
 
 	private Stage stage;
 	public static AssetManager manager;
@@ -30,12 +32,11 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
-
 	@Override
 	public void create () {
 		stage = new Stage();
 
-		petsArrayList  = new ArrayList<Pets>();
+//		petsArrayList  = new ArrayList<Pets>();
 
 
 
@@ -47,15 +48,15 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
-		manager.load("android/assets/badlogic.jpg", Texture.class);
+		manager.load("badlogic.jpg", Texture.class);
 
-		manager.load("android/assets/music.mp3", Music.class);
+		manager.load("music.mp3", Music.class);
 
 		manager.finishLoading();
 
-		image = new com.badlogic.gdx.scenes.scene2d.ui.Image(manager.get("android/assets/badlogic.jpg", Texture.class));
+		image = new com.badlogic.gdx.scenes.scene2d.ui.Image(manager.get("badlogic.jpg", Texture.class));
 		image.setBounds(20, 30, 200, 200);
-		Music music = manager.get("android/assets/music.mp3", Music.class);
+		Music music = manager.get("music.mp3", Music.class);
 
 		music.play();
 
@@ -66,56 +67,11 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
+		JsonReader temp = new JsonReader();
+		JsonValue base = temp.parse(Gdx.files.internal("pets.json"));
 
-			Pets dogs  = new Pets("tommy",12,"balck",true);
-
-
-
-		Pets fishs  = new Pets("fishy",22,"white",false);
-//			fishs.setName("qwe");
-//			fishs.setAge(4);
-//			fishs.setColour("balack");
-//			fishs.setFriendly(true);
-
-
-		Pets cats  = new Pets("bob",5,"white",true);
-//			cats.setName("bnm");
-//			cats.setAge(51);
-//			cats.setColour("gray");
-//			cats.setFriendly(false);
-
-//		petsArrayList.add(dogs);
-//		petsArrayList.add(cats);
-//		petsArrayList.add(fishs);
-
-
-
-//
-//		Pets dog=new Pets(dogs.name,dogs.age,dogs.colour,dogs.friendly);
-//		Pets cat=new Pets(fishs.name,fishs.age,fishs.colour,fishs.friendly);
-//		Pets fish=new Pets(cats.name,cats.age,cats.colour,cats.friendly);
-
-
-		Json json=new Json();
-		String dog=json.toJson(dogs);
-		String fish=json.toJson(fishs);
-		String cat=json.toJson(cats);
-
-		FileHandle file =Gdx.files.internal("pets.json");
-		file.writeString(dog,true);
-		file.writeString(cat,true);
-		file.writeString(fish,true);
-
-//		Pets a =json.fromJson(Pets.class,Gdx.files.internal("pets.json"));
-
-
-
-//
-//		System.out.println("DOG : " +dogsArrayList.get(0).getName()+","+dogsArrayList.get(0).getAge()+","+dogsArrayList.get(0).getColour());
-//		System.out.println("FISh : " +fishsArrayList.get(0).getName()+","+fishsArrayList.get(0).getAge()+","+fishsArrayList.get(0).getColour());
-//		System.out.println("Cat: " +catsArrayList.get(0).getName()+","+catsArrayList.get(0).getAge()+","+catsArrayList.get(0).getColour());
-
-
+		JsonValue pets = base.get("pets");
+		System.out.println(pets);
 
 
 	}
@@ -124,10 +80,10 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-super.render();
+		super.render();
 
-stage.act(Gdx.graphics.getDeltaTime());
-stage.draw();
+		stage.act(Gdx.graphics.getDeltaTime());
+		stage.draw();
 	}
 
 }

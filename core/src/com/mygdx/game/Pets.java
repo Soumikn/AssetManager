@@ -3,6 +3,9 @@ package com.mygdx.game;
 import java.util.ArrayList;
 
 public class Pets {
+
+   public Pets array;
+
    public int age;
    public String name;
    public String colour;

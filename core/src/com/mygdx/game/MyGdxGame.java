@@ -48,7 +48,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		music.play();
 
-		image.addAction(Actions.sequence(Actions.moveBy(30, 200), Actions.rotateBy(300, 200)));
+		image.addAction(Actions.sequence(Actions.moveBy(300, 200), Actions.rotateBy(300, 200)));
 
 
 		stage.addActor(image);
@@ -59,12 +59,21 @@ public class MyGdxGame extends ApplicationAdapter {
 		JsonValue pets = base.get("pets");
 		System.out.println(pets);
 
+
 		for (JsonValue component : base.get("pets"))
 		{
-			System.out.println("\n\nage : " + component.getString("age"));
-			System.out.println("name : " + component.getString("name"));
+			System.out.println("\n\n name : " + component.getString("name"));
+			System.out.println(component.has("friendly"));
+			System.out.println("age : " + component.getString("age"));
 			System.out.println("colour : " + component.getString("colour"));
-			System.out.println("friendly : " + component.getString("friendly"));
+
+			String str = null;
+			if(str instanceof String)
+				System.out.println("friendly : " +component.get("Pets").getString("friendly"));
+//else
+//
+//			System.out.println("");
+
 		}
 
 	}

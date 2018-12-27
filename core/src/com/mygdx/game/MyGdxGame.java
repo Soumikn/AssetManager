@@ -4,59 +4,47 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-
-import java.util.ArrayList;
 
 
 public class MyGdxGame extends ApplicationAdapter {
 
-	public Pets array;
+//	public Pets array;
 
 	private Stage stage;
 	public static AssetManager manager;
 	private com.badlogic.gdx.scenes.scene2d.ui.Image image;
 
 
-	private ArrayList<Pets> petsArrayList;
-
-
-
-
+//	private ArrayList<Pets> petsArrayList;
 
 
 	@Override
-	public void create () {
+	public void create() {
 		stage = new Stage();
 
 //		petsArrayList  = new ArrayList<Pets>();
-
-
-
 
 
 		Gdx.input.setInputProcessor(stage);
 		manager = new AssetManager();
 
 
-
-
 		manager.load("badlogic.jpg", Texture.class);
 
-		manager.load("music.mp3", Music.class);
+		manager.load("song.mp3", Music.class);
 
 		manager.finishLoading();
 
-		image = new com.badlogic.gdx.scenes.scene2d.ui.Image(manager.get("badlogic.jpg", Texture.class));
+		image = new Image(manager.get("badlogic.jpg", Texture.class));
 		image.setBounds(20, 30, 200, 200);
-		Music music = manager.get("music.mp3", Music.class);
+		Music music = manager.get("song.mp3", Music.class);
 
 		music.play();
 
@@ -66,13 +54,18 @@ public class MyGdxGame extends ApplicationAdapter {
 		stage.addActor(image);
 
 
-
 		JsonReader temp = new JsonReader();
 		JsonValue base = temp.parse(Gdx.files.internal("pets.json"));
-
 		JsonValue pets = base.get("pets");
 		System.out.println(pets);
 
+		for (JsonValue component : base.get("pets"))
+		{
+			System.out.println("\n\nage : " + component.getString("age"));
+			System.out.println("name : " + component.getString("name"));
+			System.out.println("colour : " + component.getString("colour"));
+			System.out.println("friendly : " + component.getString("friendly"));
+		}
 
 	}
 

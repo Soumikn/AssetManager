@@ -1,0 +1,19 @@
+{
+	pets: [
+	{
+	age:12,
+	name:"tommy",
+	colour:"balck",
+	friendly:"true"
+	},
+	{age:5,
+	name:"bob",
+	colour:"white",
+	friendly:"true"
+	},
+	{age:22,
+	name:"fishy",
+	colour:"white"
+	}
+]
+}

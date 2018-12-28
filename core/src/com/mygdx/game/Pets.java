@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Pets {
 
-   public Pets array;
+
 
    public int age;
    public String name;
@@ -52,4 +52,6 @@ public class Pets {
    public void setFriendly(boolean friendly) {
       this.friendly = friendly;
    }
+
+
 }

@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.JsonValue;
 
 public class MyGdxGame extends ApplicationAdapter {
 
+
+
 //	public Pets array;
 
 	private Stage stage;
@@ -29,7 +31,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create() {
 		stage = new Stage();
 
-//		petsArrayList  = new ArrayList<Pets>();
+//		petsArrayList = new ArrayList<Pets>();
 
 
 		Gdx.input.setInputProcessor(stage);
@@ -50,31 +52,56 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		image.addAction(Actions.sequence(Actions.moveBy(300, 200), Actions.rotateBy(300, 200)));
 
-
 		stage.addActor(image);
-
 
 		JsonReader temp = new JsonReader();
 		JsonValue base = temp.parse(Gdx.files.internal("pets.json"));
 		JsonValue pets = base.get("pets");
-		System.out.println(pets);
+//		System.out.println(pets);
 
+//		public static void main(String[] args) {
 
-		for (JsonValue component : base.get("pets"))
-		{
-			System.out.println("\n\n name : " + component.getString("name"));
-			System.out.println(component.has("friendly"));
-			System.out.println("age : " + component.getString("age"));
-			System.out.println("colour : " + component.getString("colour"));
+			Pets dog = new Pets();
+			dog.name="Tommy";
+			dog.age=6;
+			dog.colour="yellow";
+			dog.friendly=true;
+		System.out.println(dog.name+"  "+dog.age+"  "+dog.colour+"  "+dog.friendly);
 
-			String str = null;
-			if(str instanceof String)
-				System.out.println("friendly : " +component.get("Pets").getString("friendly"));
-//else
+			Pets cat = new Pets();
+			cat.name="Miu";
+			cat.age=5;
+			cat.colour="back";
+			cat.friendly=true;
+			System.out.println(cat.name+"  "+cat.age+"  "+cat.colour+"  "+cat.friendly);
+
+			Pets fish = new Pets();
+			fish.name="Fishe";
+			fish.age=2;
+			fish.colour="white";
+			fish.friendly=false;
+		System.out.println(fish.name+"  "+fish.age+"  "+fish.colour+"  "+fish.friendly);
+//		}
+//		for (JsonValue component : base.get("pets"))
+//		{
+//			System.out.println("\n\n name : " + component.getString("name"));
 //
-//			System.out.println("");
-
-		}
+//
+//
+//			System.out.println("age : " + component.getString("age"));
+//			System.out.println("colour : " + component.getString("colour"));
+//			if(component.has("friendly"))
+//				System.out.println("friendly : " +component.getString("friendly"));
+//
+//
+//
+////			if(str instanceof String)
+////				System.out.println("friendly : " +component.getString("friendly"));
+////else
+////
+////			System.out.println("null");
+//
+//		}
 
 	}
 
